@@ -15,6 +15,8 @@
 		817EC2E21D6BC50F005FA078 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 817EC2E01D6BC50F005FA078 /* LaunchScreen.storyboard */; };
 		817EC2ED1D6BC50F005FA078 /* JGKVOTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 817EC2EC1D6BC50F005FA078 /* JGKVOTests.m */; };
 		817EC2F81D6BC50F005FA078 /* JGKVOUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 817EC2F71D6BC50F005FA078 /* JGKVOUITests.m */; };
+		817EC3091D6BC607005FA078 /* NSObject+JGKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 817EC3081D6BC607005FA078 /* NSObject+JGKVO.m */; };
+		817EC30C1D6BE152005FA078 /* JGModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 817EC30B1D6BE152005FA078 /* JGModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,10 @@
 		817EC2F31D6BC50F005FA078 /* JGKVOUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JGKVOUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		817EC2F71D6BC50F005FA078 /* JGKVOUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JGKVOUITests.m; sourceTree = "<group>"; };
 		817EC2F91D6BC50F005FA078 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		817EC3071D6BC607005FA078 /* NSObject+JGKVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+JGKVO.h"; sourceTree = "<group>"; };
+		817EC3081D6BC607005FA078 /* NSObject+JGKVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JGKVO.m"; sourceTree = "<group>"; };
+		817EC30A1D6BE152005FA078 /* JGModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGModel.h; sourceTree = "<group>"; };
+		817EC30B1D6BE152005FA078 /* JGModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,8 +109,12 @@
 			children = (
 				817EC2D51D6BC50F005FA078 /* AppDelegate.h */,
 				817EC2D61D6BC50F005FA078 /* AppDelegate.m */,
+				817EC3071D6BC607005FA078 /* NSObject+JGKVO.h */,
+				817EC3081D6BC607005FA078 /* NSObject+JGKVO.m */,
 				817EC2D81D6BC50F005FA078 /* ViewController.h */,
 				817EC2D91D6BC50F005FA078 /* ViewController.m */,
+				817EC30A1D6BE152005FA078 /* JGModel.h */,
+				817EC30B1D6BE152005FA078 /* JGModel.m */,
 				817EC2DB1D6BC50F005FA078 /* Main.storyboard */,
 				817EC2DE1D6BC50F005FA078 /* Assets.xcassets */,
 				817EC2E01D6BC50F005FA078 /* LaunchScreen.storyboard */,
@@ -272,7 +282,9 @@
 			files = (
 				817EC2DA1D6BC50F005FA078 /* ViewController.m in Sources */,
 				817EC2D71D6BC50F005FA078 /* AppDelegate.m in Sources */,
+				817EC30C1D6BE152005FA078 /* JGModel.m in Sources */,
 				817EC2D41D6BC50F005FA078 /* main.m in Sources */,
+				817EC3091D6BC607005FA078 /* NSObject+JGKVO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

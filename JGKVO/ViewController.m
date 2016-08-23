@@ -7,7 +7,8 @@
 //
 
 #import "ViewController.h"
-
+#import "JGModel.h"
+#import "NSObject+JGKVO.h"
 @interface ViewController ()
 
 @end
@@ -16,12 +17,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+
+    JGModel *model = [[JGModel alloc]init];
+    
+    [model jg_addObserver:self forKeyPath:@"kvoString" options:NSKeyValueObservingOptionNew context:nil];
+    
+    model.kvoString = @"123";
+    NSLog(@"%@and%@",model.kvoString,[model class]);
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)jg_observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    NSLog(@"11");
 }
+
 
 @end
