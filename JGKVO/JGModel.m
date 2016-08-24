@@ -10,4 +10,5 @@
 //NSString *str;
 @implementation JGModel
 
+
 @end

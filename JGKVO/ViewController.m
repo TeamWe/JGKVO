@@ -9,7 +9,10 @@
 #import "ViewController.h"
 #import "JGModel.h"
 #import "NSObject+JGKVO.h"
-@interface ViewController ()
+#import <objc/runtime.h>
+@interface ViewController (){
+    JGModel *model;
+}
 
 @end
 
@@ -19,16 +22,24 @@
     [super viewDidLoad];
     
 
-    JGModel *model = [[JGModel alloc]init];
+    model = [[JGModel alloc]init];
     
     [model jg_addObserver:self forKeyPath:@"kvoString" options:NSKeyValueObservingOptionNew context:nil];
     
     model.kvoString = @"123";
-    NSLog(@"%@and%@",model.kvoString,[model class]);
+//    NSLog(@"%@and%@",model.kvoString,[JGModel class]);
+    
+    
 }
 
 - (void)jg_observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
-    NSLog(@"11");
+    NSLog(@"%@",keyPath);
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [super touchesBegan:touches withEvent:event];
+    [model jg_willChangeValueForKey:@"kvoString"];
+    [model jg_didChangeValueForKey:@"kvoString"];
 }
 
 
