@@ -24,7 +24,7 @@
 
     model = [[JGModel alloc]init];
     
-    [model jg_addObserver:self forKeyPath:@"kvoString" options:NSKeyValueObservingOptionNew context:nil];
+    [model jg_addObserver:self forKeyPath:@"kvoString" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
     
     model.kvoString = @"123";
 //    NSLog(@"%@and%@",model.kvoString,[JGModel class]);
@@ -35,6 +35,7 @@
 - (void)jg_observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     NSLog(@"%@",keyPath);
 }
+
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [super touchesBegan:touches withEvent:event];

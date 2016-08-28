@@ -508,6 +508,7 @@
 				817EC2FE1D6BC50F005FA078 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		817EC2FF1D6BC50F005FA078 /* Build configuration list for PBXNativeTarget "JGKVOTests" */ = {
 			isa = XCConfigurationList;
@@ -516,6 +517,7 @@
 				817EC3011D6BC50F005FA078 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		817EC3021D6BC50F005FA078 /* Build configuration list for PBXNativeTarget "JGKVOUITests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +526,7 @@
 				817EC3041D6BC50F005FA078 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -10,13 +10,18 @@
 #import <objc/runtime.h>
 #import <objc/message.h>
 
-NSString *key;
+id key;
 id kvoObserve;
+void *contexts;
+NSKeyValueObservingOptions option;
 static void jg_setValue(id self, SEL _cmd, id newValue){
-//    --内存泄漏这样会一直掉用这个方法然后就崩了,这是一只掉用的子类的方法然后一直循环引用，看堆栈信息可以得到
+//    --内存泄漏这样会一直掉用这个方法然后就崩了,这是一只掉用的子类的方法然后一直循环引用，看堆栈信息可以得到。这个self就是子类了
 //    [self setValue:newValue forKey:key];
-
-    id oldValue = [self valueForKey:key];
+    
+    NSMutableDictionary *valueDictionry = [NSMutableDictionary new];
+    //只能在前面取得oldValue--设计的不够美观应该判断下是否为空
+    if(option && NSKeyValueChangeOldKey)
+        valueDictionry[@"oldValue"] = [self valueForKey:key];
     
     if (newValue) {
         //掉用父类方法来赋值
@@ -30,13 +35,14 @@ static void jg_setValue(id self, SEL _cmd, id newValue){
         
         // call super's setter, which is original class's setter method
         objc_msgSendSuperCasted(&superclazz, _cmd, newValue);
-        
+        if(option && NSKeyValueChangeNewKey)
+            valueDictionry[@"newVlaue"] = newValue;
     }
     
+    
     SEL cmd = @selector(jg_observeValueForKeyPath:ofObject:change:context:);
-    void (*objc_kvoSend)(id self,SEL _cmd,NSString *,id,NSDictionary *, void *) = (void *)objc_msgSend;
-    NSLog(@"i'm come：%@",key);
-    objc_kvoSend(kvoObserve,cmd,key,oldValue,nil,nil);
+    void (*objc_kvoSend)(id self ,SEL _cmd ,id ,id ,NSDictionary * , void *) = (void *)objc_msgSend;
+    objc_kvoSend(kvoObserve,cmd,key,self,valueDictionry,contexts);
 }
 
 static NSString* jg_getSetter(const NSString *getter){
@@ -52,10 +58,13 @@ static NSString* jg_getSetter(const NSString *getter){
 }
 
 @implementation NSObject (JGKVO)
+//目前支持对象类型的kvo
 - (void) jg_addObserver:(nonnull NSObject *)observer forKeyPath:(nonnull NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(nullable void *)context{
     Class currentClass = [self class];
     key = keyPath;
     kvoObserve = observer;
+    option = options;
+    contexts = context;
 //    const char *superName = class_getName(currentClass);
     NSString *currentString = NSStringFromClass(currentClass);
     
@@ -76,7 +85,7 @@ static NSString* jg_getSetter(const NSString *getter){
     
     
 }
-//判断是否存在某个方法当前类内,继承下来的不会有变化
+//判断是否存在某个方法当前类内,继承下来的不会有变化这个局限于实例方法
 - (BOOL)jg_HasSelector:(SEL)selector{
     Class class = [self class];
     unsigned count;
